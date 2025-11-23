@@ -4,3 +4,5 @@ firebase-admin
 openai
 numpy
 tensorflow-cpu
+python-dotenv
+google-cloud-firestore
