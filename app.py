@@ -69,7 +69,6 @@ def gerar_burnout_endpoint(user_id: str):
         "checkins_usados": checkins,
     }
 
-    # 💾 salvar insight no Firestore
     db.salvar_insight(user_id, "burnout", payload)
 
     return payload

@@ -6,7 +6,6 @@ from tensorflow.keras.layers import Dense
 class BurnoutNeuralService:
 
     def __init__(self):
-        # Modelo pequeno, treina rápido
         self.model = Sequential(
             [
                 Dense(16, activation="relu", input_shape=(5,)),

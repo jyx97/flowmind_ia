@@ -1,3 +1,4 @@
+import base64
 import os
 from datetime import datetime
 
@@ -9,20 +10,33 @@ class FirestoreClient:
 
     def __init__(self):
         # caminho relativo: firebase/firebase-key.json
-        key_path = os.path.join("firebase", "firebase-key.json")
+        base64_key = os.getenv("FIREBASE_KEY_BASE64")
+        if base64_key:
+            # --- Rodando no Railway ---
+            decoded = base64.b64decode(base64_key).decode("utf-8")
+            service_account_info = json.loads(decoded)
+            cred = credentials.Certificate(service_account_info)
 
-        if not os.path.exists(key_path):
-            raise FileNotFoundError(
-                f"Arquivo de credenciais não encontrado em: {key_path}"
-            )
+            if not firebase_admin._apps:
+                firebase_admin.initialize_app(cred)
 
-        if not firebase_admin._apps:
+        else:
+            # --- Rodando localmente, com arquivo físico ---
+            key_path = os.path.join("firebase", "firebase-key.json")
+            if not os.path.exists(key_path):
+                raise FileNotFoundError(
+                    f"Credenciais não encontradas.\n"
+                    f"Tente setar FIREBASE_KEY_BASE64 no Railway ou coloque o arquivo local em: {key_path}"
+                )
+
             cred = credentials.Certificate(key_path)
-            firebase_admin.initialize_app(cred)
+
+            if not firebase_admin._apps:
+                firebase_admin.initialize_app(cred)
 
         self.db = firestore.client()
 
-    # ---------- LEITURA DE DADOS ----------
+    # le dados
 
     def get_checkins(self, user_id: str):
         docs = (
@@ -42,7 +56,7 @@ class FirestoreClient:
         )
         return [d.to_dict() for d in docs]
 
-    # ---------- SALVAR INSIGHTS (RELATÓRIO / BURNOUT) ----------
+    # salva dados
 
     def salvar_insight(self, user_id: str, tipo: str, payload: dict):
         """
