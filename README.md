@@ -97,6 +97,7 @@ flowmind_ia/
     ├── firestore_service.py
     ├── openai_service.py
     └── burnout_model.py
+```
 
 ## 👩‍💻 Integrantes
 
@@ -110,5 +111,6 @@ flowmind_ia/
 
 ## Links
 - Link de acesso ao Railway:  https://railway.com/invite/tyL9fkw6OTJ ](https://railway.com/invite/SATGqzWEfXH)
-- Link do vídeo do projeto:
+- Link do vídeo do projeto: https://youtu.be/x7wxnQHPh1M
+- Link da api rodando: https://youtu.be/BLaAgG6V32w
 
