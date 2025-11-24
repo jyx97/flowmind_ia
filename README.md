@@ -97,3 +97,18 @@ flowmind_ia/
     ├── firestore_service.py
     ├── openai_service.py
     └── burnout_model.py
+
+## 👩‍💻 Integrantes
+
+| Nome                              | RM      |
+|-----------------------------------|---------|
+| Júlia Soares Farias dos Santos    | 554609  |
+| Sofia Domingues GOnçalves         | 554920  |
+
+
+---
+
+## Links
+- Link de acesso ao Railway:  https://railway.com/invite/tyL9fkw6OTJ ](https://railway.com/invite/SATGqzWEfXH)
+- Link do vídeo do projeto:
+
